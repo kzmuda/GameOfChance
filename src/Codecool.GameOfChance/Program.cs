@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Codecool.GameOfChance
 {
@@ -11,8 +12,13 @@ namespace Codecool.GameOfChance
                 Console.WriteLine(arg);
             }
 
-            Horse horse = new Horse("Filip");
-           
+            //Horse horse = new Horse("Filip");
+            List<Horse> data = Horse.Read();
+
+            foreach (var horse in data)
+            {
+                Console.WriteLine($"{horse.Name} {horse.Speed.ToString()}");
+            }
         }
     }
 }
