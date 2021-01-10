@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Codecool.GameOfChance
 {
@@ -17,6 +18,7 @@ namespace Codecool.GameOfChance
         public HistoricalDataSet(ILogger logger)
         {
             _cl = logger;
+            _dataPoints = new List<HistoricalDataPoint>();
         }
 
         public void Generate()
@@ -49,8 +51,6 @@ namespace Codecool.GameOfChance
                 data.Add(horses[index].Name);
             }
 
-            _dataPoints = new List<HistoricalDataPoint>();
-            
             _dataPoints.Add(new HistoricalDataPoint(data));
 
             using (StreamWriter writer = File.AppendText("history.csv"))
@@ -58,6 +58,19 @@ namespace Codecool.GameOfChance
                 foreach (var element in _dataPoints)
                 {
                     writer.WriteLine(element);
+                }
+            }
+        }
+
+        public void Load()
+        {
+            using (StreamReader reader = File.OpenText("history.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var sptilledLine = line.Split(",");
+                    _dataPoints.Add(new HistoricalDataPoint(sptilledLine.ToList()));
                 }
             }
         }

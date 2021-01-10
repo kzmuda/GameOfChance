@@ -7,9 +7,24 @@ namespace Codecool.GameOfChance
     {
         static void Main(string[] args)
         {
-            foreach (var arg in args)
+            int number;
+            HistoricalDataSet ds = new HistoricalDataSet(new ConsoleLogger());
+            if (args.Length > 0)
             {
-                Console.WriteLine(arg);
+                if (int.TryParse(args[0],out number))
+                {
+                    if (number == 0)
+                    {
+                        ds.Load();
+                    }
+                    else if (number > 0)
+                    {
+                        for (int i = 0; i < number; i++)
+                        {
+                            ds.Generate();
+                        }
+                    }
+                }
             }
 
             //Horse horse = new Horse("Filip");
@@ -19,9 +34,7 @@ namespace Codecool.GameOfChance
             {
                 Console.WriteLine($"{horse.Name} {horse.Speed.ToString()}");
             }
-
-            HistoricalDataSet ds = new HistoricalDataSet(new ConsoleLogger());
-            ds.Generate();
+            
 
             foreach (var element in ds.DataPoints)
             {
