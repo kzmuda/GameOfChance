@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Codecool.GameOfChance
@@ -10,6 +11,11 @@ namespace Codecool.GameOfChance
         public HistoricalDataPoint(List<string> rankingOfNameHorses)
         {
             _rankingOfNameHorses = rankingOfNameHorses;
+        }
+
+        public override string ToString()
+        {
+            return String.Join(',' , _rankingOfNameHorses);
         }
     }
 }

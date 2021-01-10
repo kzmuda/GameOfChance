@@ -19,6 +19,14 @@ namespace Codecool.GameOfChance
             {
                 Console.WriteLine($"{horse.Name} {horse.Speed.ToString()}");
             }
+
+            HistoricalDataSet ds = new HistoricalDataSet(new ConsoleLogger());
+            ds.Generate();
+
+            foreach (var element in ds.DataPoints)
+            {
+                Console.WriteLine(element);
+            }
         }
     }
 }
