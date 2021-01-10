@@ -1,6 +1,6 @@
 namespace Codecool.GameOfChance
 {
-    interface ILogger
+    public interface ILogger
     {
         void Info(string message);
         void Error(string message);

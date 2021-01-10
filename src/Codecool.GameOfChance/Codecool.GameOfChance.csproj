@@ -20,8 +20,9 @@
   <!-- </ItemGroup> -->
   
   <ItemGroup>
-    <None Update="horses.csv">
+    <Content Include="horses.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
+
 </Project>
